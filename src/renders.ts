@@ -9,7 +9,7 @@ const extractIndent = (rawText: string): string => rawText.split(/\S+/)[0];
 const renderHeader = (croppedText: string, config: IConfig, indent: string): string => {
   checkCommentChars(croppedText, config.limiters);
   checkLongText(croppedText, config.lineLen, config.limiters);
-  checkFillerLen(config.sym);
+  checkFillerLen(config.blockSym);
 
   const transformedWords = TRANSFORM_MAP[config.transform](croppedText);
   const buildFn = BUILDERS_MAP[config.height];
@@ -18,10 +18,10 @@ const renderHeader = (croppedText: string, config: IConfig, indent: string): str
 
 const renderLine = (config: IConfig, indent: string): string => {
   checkLongText('', config.lineLen, config.limiters);
-  checkFillerLen(config.sym);
+  checkFillerLen(config.lineSym);
 
   const buildFn = buildSolidLine;
-  return buildFn(config, indent);
+  return buildFn(config, config.lineSym, indent);
 };
 
 export const render = (type: PresetId, rawText: string, lang: string): string => {

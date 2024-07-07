@@ -1,4 +1,5 @@
-import { ILimiters, ILanguagesMapConfig } from './types';
+import { LanguageConfig, ILimiters, ILanguagesMapConfig } from './types';
+import { defaultLineSym, defaultSubSym, defaultBlockSym } from './config';
 
 const wrapLimiters = (left: string, right: string): ILimiters => ({ left, right });
 
@@ -93,20 +94,38 @@ const getLanguageDefaultLimiters = (lang?: string): ILimiters => {
   }
 };
 
+const getLanguageDefaultFiller = (lang?: string): [string, string, string] => {
+  switch (lang) {
+    // TODO: add more language cases
+    default:
+      return ["-", "-", "="];
+  }
+}
+
 // waiting for issue: https://github.com/microsoft/vscode/issues/2871
-export function getLanguageLimiters(
+export function getLanguageConfig(
   language: string,
   getUserLanguagesMap: () => ILanguagesMapConfig
-): ILimiters {
+): LanguageConfig {
+  let lineSym: string;
+  let subSym: string;
+  let blockSym: string;
   let limiters: ILimiters;
+
   const userLanguagesMap = getUserLanguagesMap();
 
   if (userLanguagesMap !== undefined && userLanguagesMap[language] !== undefined) {
-    const currentLangArr = userLanguagesMap[language];
-    limiters = wrapLimiters(currentLangArr[0], currentLangArr[1] || '');
+    const currentLangObj = userLanguagesMap[language];
+    lineSym = currentLangObj.lineSym || defaultLineSym;
+    subSym = currentLangObj.subSym || defaultSubSym;
+    blockSym = currentLangObj.blockSym || defaultBlockSym;
+    limiters = wrapLimiters(currentLangObj.limiters[0], currentLangObj.limiters[1] || '');
   } else {
+    lineSym = defaultLineSym;
+    subSym = defaultSubSym;
+    blockSym = defaultBlockSym;
     limiters = getLanguageDefaultLimiters(language);
   }
 
-  return limiters;
+  return { lineSym, subSym, blockSym, limiters };
 }

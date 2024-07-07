@@ -1,5 +1,5 @@
 <p align="center">
-  <img alt="Comment Divider" src="https://github.com/stackbreak/comment-divider/raw/master/img/logo_256.png" width="20%"  />
+  <img alt="Comment Divider" src="https://github.com/joey-john/comment-divider/raw/master/img/logo_256.png" width="20%"  />
 </p>
 
 <h1 align="center">
@@ -10,9 +10,12 @@ This is **[Visual Studio Code](https://github.com/Microsoft/vscode)** extension,
 
 **[Supports all common languages](#language-support).**
 
+**NOTE:** This extension is a fork of [Comment Divider by stackbreak](https://github.com/stackbreak/comment-divider). The intention of this fork is to add enhancements to the original extension.
+
 ## Install
 
-https://marketplace.visualstudio.com/items?itemName=stackbreak.comment-divider
+<!-- TODO: UPDATE ON PUBLISH -->
+https://marketplace.visualstudio.com/items?itemName=stackbreak.comment-divider 
 
 ## Demo
 
@@ -175,4 +178,4 @@ The example above defines the right characters for `toml` and overrides `scss` d
 
 ## Issues
 
-Request features and report bugs using [GitHub](https://github.com/stackbreak/comment-divider/issues).
+Request features and report bugs using [GitHub](https://github.com/joey-john/comment-divider/issues).

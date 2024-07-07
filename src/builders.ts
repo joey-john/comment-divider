@@ -111,10 +111,10 @@ const composeInjectors = (...injectors) => (charList: CharList) =>
  * Builder functions.
  */
 
-export const buildSolidLine = (config: IConfig, leftIndent: string): string => {
+export const buildSolidLine = (config: IConfig, sym: string, leftIndent: string): string => {
   const injectLimiters = withLimiters(config.limiters.left, config.limiters.right);
 
-  const blankCharList = buildBlankCharList(config.lineLen, config.sym);
+  const blankCharList = buildBlankCharList(config.lineLen, sym);
   const computedCharList = composeInjectors(injectLimiters)(blankCharList);
 
   return leftIndent + charListToString(computedCharList);
@@ -122,32 +122,40 @@ export const buildSolidLine = (config: IConfig, leftIndent: string): string => {
 
 export const buildWordsLine = (
   config: IConfig,
+  sym: string,
   transformedWords: string,
   leftIndent: string
 ): string => {
   const injectLimiters = withLimiters(config.limiters.left, config.limiters.right);
   const injectWords = withWords(config.align, transformedWords);
 
-  const blankCharList = buildBlankCharList(config.lineLen, config.sym);
+  const blankCharList = buildBlankCharList(config.lineLen, sym);
   const computedCharList = composeInjectors(injectLimiters, injectWords)(blankCharList);
 
   return leftIndent + charListToString(computedCharList);
 };
+
+export const buildSubheaderLine = (
+  config: IConfig,
+  transformedWords: string,
+  leftIndent: string
+): string => {
+  return buildWordsLine(config, config.subSym, transformedWords, leftIndent);
+}
 
 export const buildBlock = (
   config: IConfig,
   transformedWords: string,
   leftIndent: string
 ): string => {
-  const textConfig: IConfig = { ...config, sym: GAP_SYM };
-  const topLine = buildSolidLine(config, leftIndent);
-  const textLine = buildWordsLine(textConfig, transformedWords, leftIndent);
-  const bottomLine = buildSolidLine(config, leftIndent);
+  const topLine = buildSolidLine(config, config.blockSym, leftIndent);
+  const textLine = buildWordsLine(config, GAP_SYM, transformedWords, leftIndent);
+  const bottomLine = buildSolidLine(config, config.blockSym, leftIndent);
 
   return topLine + NEW_LINE_SYM + textLine + NEW_LINE_SYM + bottomLine;
 };
 
 export const BUILDERS_MAP: { [key in Height]: any } = {
   block: buildBlock,
-  line: buildWordsLine
+  line: buildSubheaderLine
 };

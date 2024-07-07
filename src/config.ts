@@ -1,8 +1,9 @@
 import { workspace } from 'vscode';
 
 import { EXT_ID } from './constants';
-import { getLanguageLimiters } from './limiters';
+import { getLanguageConfig } from './limiters';
 import {
+  LanguageConfig,
   IPreset,
   ILimiters,
   IConfig,
@@ -13,30 +14,34 @@ import {
   ILanguagesMapConfig
 } from './types';
 
+// Default Line Filler Symbols 
+export const defaultLineSym = workspace.getConfiguration(EXT_ID).get<string>('lineFiller');
+export const defaultSubSym = workspace.getConfiguration(EXT_ID).get<string>('subheaderFiller');
+export const defaultBlockSym = workspace.getConfiguration(EXT_ID).get<string>('mainHeaderFiller');
+
 const getPreset = (type: PresetId): IPreset => {
   const section = workspace.getConfiguration(EXT_ID);
 
   const lineLen = section.get<number>('length');
-  const sym = section.get<string>(`${type}Filler`);
   const height = section.get<Height>(`${type}Height`);
   const align = section.get<Align>(`${type}Align`);
   const transform = section.get<Transform>(`${type}Transform`);
   const includeIndent = section.get<boolean>(`shouldLengthIncludeIndent`);
 
-  return { lineLen, sym, height, align, transform, includeIndent };
+  return { lineLen, height, align, transform, includeIndent };
 };
 
 const getLanguagesMapConfig = () =>
   workspace.getConfiguration(EXT_ID).inspect('languagesMap')
     .globalValue as ILanguagesMapConfig;
 
-const mergePresetWithLimiters = (preset: IPreset, limiters: ILimiters): IConfig => ({
+const mergePresetWithLanguageConfig = (preset: IPreset, config: LanguageConfig): IConfig => ({
   ...preset,
-  limiters
+  ...config
 });
 
 export const getConfig = (presetId: PresetId, lang: string): IConfig =>
-  mergePresetWithLimiters(
+  mergePresetWithLanguageConfig(
     getPreset(presetId),
-    getLanguageLimiters(lang, getLanguagesMapConfig)
+    getLanguageConfig(lang, getLanguagesMapConfig)
   );

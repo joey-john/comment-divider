@@ -1,8 +1,8 @@
-.vscode/**
-.vscode-test/**
-out/test/**
-out/**/*.map
-src/**
+.vscode/
+node_modules
+.vscode-test/
+out/
+src/
 .gitignore
 .prettierrc
 tsconfig.json

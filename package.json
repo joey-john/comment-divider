@@ -1,21 +1,13 @@
 {
   "name": "comment-divider",
-  "displayName": "Comment Divider",
-  "description": "Divide your code by sections with styled separators.",
   "version": "0.4.0",
-  "publisher": "stackbreak",
-  "license": "GPL-3.0",
-  "icon": "img/logo_256.png",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/stackbreak/comment-divider"
-  },
-  "bugs": {
-    "url": "https://github.com/stackbreak/comment-divider/issues"
-  },
+  "publisher": "Joey John",
   "engines": {
     "vscode": "^1.28.0"
   },
+  "license": "GPL-3.0",
+  "displayName": "Comment Divider",
+  "description": "Divide your code by sections with styled separators. Forked from Comment-Divider by stackbreak",
   "categories": [
     "Other",
     "Snippets"
@@ -26,11 +18,15 @@
     "divider",
     "section"
   ],
-  "activationEvents": [
-    "onCommand:comment-divider.makeSubHeader",
-    "onCommand:comment-divider.makeMainHeader",
-    "onCommand:comment-divider.insertSolidLine"
-  ],
+  "icon": "img/logo_256.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/joey-john/comment-divider"
+  },
+  "bugs": {
+    "url": "https://github.com/joey-john/comment-divider/issues"
+  },
+  "homepage": "https://github.com/joey-john/comment-divider/blob/master/README.md",
   "contributes": {
     "commands": [
       {
@@ -54,12 +50,12 @@
       },
       {
         "command": "comment-divider.makeMainHeader",
-        "key": "shift+alt+x",
+        "key": "ctrl+shift+alt+x",
         "when": "editorTextFocus"
       },
       {
         "command": "comment-divider.insertSolidLine",
-        "key": "alt+y",
+        "key": "shift+alt+x",
         "when": "editorTextFocus"
       }
     ],
@@ -160,20 +156,43 @@
         },
         "comment-divider.languagesMap": {
           "type": "object",
+          "description": "Defines what characters will be used as comment line limiters for special languages. It also overrides the default preset.",
           "uniqueItems": true,
           "patternProperties": {
             "^[\\w\\-\\.]+$": {
-              "type": "array",
+              "type": "object",
               "description": "Name of the language mode given by VSCode",
-              "minItems": 1,
-              "maxItems": 2,
-              "items": {
-                "type": "string"
-              }
+              "uniqueItems": true,
+              "propertyNames": true,
+              "properties": {
+                "lineSym": {
+                  "type": "string",
+                  "description": "Set symbol for solid line filling.",
+                  "minLength": 1,
+                  "maxLength": 1
+                },
+                "subHeaderSym": {
+                  "type": "string",
+                  "description": "Set symbol for subheader line filling.",
+                  "minLength": 1,
+                  "maxLength": 1
+                },
+                "blockSym": {
+                  "type": "string",
+                  "description": "Block Symbol",
+                  "minLength": 1,
+                  "maxLength": 1
+                },
+                "limiters": {
+                  "type": "array",
+                  "description": "Line Limiters",
+                  "minItems": 1,
+                  "maxItems": 2
+                }
+              },
+              "additionalProperties": false
             }
-          },
-          "additionalProperties": false,
-          "description": "Defines what characters will be used as comment line limiters for special languages. It also overrides the default preset."
+          }
         }
       }
     }
@@ -183,6 +202,7 @@
     "vscode:prepublish": "npm run compile",
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",
+    "lint": "eslint \"src/**/*.ts\"",
     "postinstall": "node ./node_modules/vscode/bin/install"
   },
   "devDependencies": {
@@ -190,7 +210,10 @@
     "tslint": "^5.11.0",
     "tslint-config-prettier": "^1.17.0",
     "typescript": "^4.1.2",
-    "typescript-tslint-plugin": "^0.3.1",
-    "vscode": "^1.1.26"
+    "typescript-tslint-plugin": "^0.3.1"
+  },
+  "dependencies": {
+    "@types/vscode": "^1.91.0",
+    "vscode": "^1.1.37"
   }
 }
