@@ -164,6 +164,9 @@
               "description": "Name of the language mode given by VSCode",
               "uniqueItems": true,
               "propertyNames": true,
+              "required": [
+                "limiters"
+              ],
               "properties": {
                 "lineSym": {
                   "type": "string",
@@ -171,7 +174,7 @@
                   "minLength": 1,
                   "maxLength": 1
                 },
-                "subHeaderSym": {
+                "subSym": {
                   "type": "string",
                   "description": "Set symbol for subheader line filling.",
                   "minLength": 1,

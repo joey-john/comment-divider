@@ -155,27 +155,56 @@ or in html files
 
 ## Languages Configuration
 
-If some language is not supported out of the box, or you want to change default comment characters for an already supported language, it is possible to do it in the settings.
+If some language is not supported out of the box, or you want to change the default characters for an already supported language, it is possible to do it in the settings.
 
 ```json
 "comment-divider.languagesMap": {
-      "toml": ["#", "#"],
-      "scss": ["//"]
+      "python": {
+        "lineSym": "-",
+        "subSym": "-",
+        "blockSym": "+",
+        "limiters": ["#", "#"],
+      },
+      "c": {
+        "limiters": ["//"]
+      }
 }
 ```
 
-The item name is the language mode name and is associated with an array of 1 or 2 elements. The first element is the start of the line. The second, if defined, is the end.
+The item name is the language mode name and is associated with an object with the following fields:
+  - `lineSym`: (optional) Solid Line Filler Character
+  - `subSym`: (optional) SubHeader Filler Character
+  - `blockSym`: (optional) Block Header Filler Character
+  - `limiters`: (required) Comment Symbols. The first element is the start of the line. The second, 
+                if defined, is the end. 
 
-The example above defines the right characters for `toml` and overrides `scss` defaults. As a result, the subheaders for these languages look like this:
+For any symbol not defined, the corresponding default filler symbol defined in the settings will be used. 
 
-```toml
-# ------------------------------ toml subheader ------------------------------ #
+The example above overrides `python` and `c` defaults. As a result, the subheaders for these languages look like this:
+
+```python
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ #
+#                                 Python Header                                #
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ #
+
+# ----------------------------- Python Subheader ----------------------------- #
+
+# ---------------------------------------------------------------------------- #
 ```
 
-```scss
-// ----------------------------- scss subheader --------------------------------
+```c
+// -----------------------------------------------------------------------------
+//                                  C Header                                    
+// -----------------------------------------------------------------------------
+
+// ------------------------------- C Subheader ---------------------------------
+
+// -----------------------------------------------------------------------------
 ```
 
 ## Issues
 
 Request features and report bugs using [GitHub](https://github.com/joey-john/comment-divider/issues).
+
+### Known Issues
+- After changing a symbol, `Developer: Reload Window` must be called in order to have the change take effect
