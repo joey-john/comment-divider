@@ -168,21 +168,21 @@
                 "limiters"
               ],
               "properties": {
-                "lineSym": {
+                "solidLineSym": {
                   "type": "string",
-                  "description": "Set symbol for solid line filling.",
+                  "description": "Set filler symbol for solid line.",
                   "minLength": 1,
                   "maxLength": 1
                 },
-                "subSym": {
+                "wordLineSym": {
                   "type": "string",
-                  "description": "Set symbol for subheader line filling.",
+                  "description": "Set filler symbol for word line.",
                   "minLength": 1,
                   "maxLength": 1
                 },
                 "blockSym": {
                   "type": "string",
-                  "description": "Block Symbol",
+                  "description": "Set filler symbol for block lines",
                   "minLength": 1,
                   "maxLength": 1
                 },

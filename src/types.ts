@@ -16,8 +16,8 @@ export interface ILimiters {
 }
 
 export interface LanguageConfig {
-  lineSym: string;
-  subSym: string;
+  solidLineSym: string;
+  wordLineSym: string;
   blockSym: string;
   limiters: ILimiters;
 }

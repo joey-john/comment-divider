@@ -135,12 +135,13 @@ export const buildWordsLine = (
   return leftIndent + charListToString(computedCharList);
 };
 
-export const buildSubheaderLine = (
+// Actual Line Command Header Fucntion calls buildWordsLine
+export const buildWordLine = (
   config: IConfig,
   transformedWords: string,
   leftIndent: string
 ): string => {
-  return buildWordsLine(config, config.subSym, transformedWords, leftIndent);
+  return buildWordsLine(config, config.wordLineSym, transformedWords, leftIndent);
 }
 
 export const buildBlock = (
@@ -157,5 +158,5 @@ export const buildBlock = (
 
 export const BUILDERS_MAP: { [key in Height]: any } = {
   block: buildBlock,
-  line: buildSubheaderLine
+  line: buildWordLine
 };

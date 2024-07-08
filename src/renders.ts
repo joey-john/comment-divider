@@ -16,12 +16,13 @@ const renderHeader = (croppedText: string, config: IConfig, indent: string): str
   return buildFn(config, transformedWords, indent);
 };
 
+// Build Solid Line
 const renderLine = (config: IConfig, indent: string): string => {
   checkLongText('', config.lineLen, config.limiters);
-  checkFillerLen(config.lineSym);
+  checkFillerLen(config.solidLineSym);
 
   const buildFn = buildSolidLine;
-  return buildFn(config, config.lineSym, indent);
+  return buildFn(config, config.solidLineSym, indent);
 };
 
 export const render = (type: PresetId, rawText: string, lang: string): string => {

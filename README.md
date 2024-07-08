@@ -160,8 +160,8 @@ If some language is not supported out of the box, or you want to change the defa
 ```json
 "comment-divider.languagesMap": {
       "python": {
-        "lineSym": "-",
-        "subSym": "-",
+        "solidLineSym": "-",
+        "wordLineSym": "-",
         "blockSym": "+",
         "limiters": ["#", "#"],
       },
@@ -172,8 +172,8 @@ If some language is not supported out of the box, or you want to change the defa
 ```
 
 The item name is the language mode name and is associated with an object with the following fields:
-  - `lineSym`: (optional) Solid Line Filler Character
-  - `subSym`: (optional) SubHeader Filler Character
+  - `solidLineSym`: (optional) Solid Line Filler Character
+  - `wordLineSym`: (optional) Word Line Filler Character
   - `blockSym`: (optional) Block Header Filler Character
   - `limiters`: (required) Comment Symbols. The first element is the start of the line. The second, 
                 if defined, is the end. 

@@ -1,5 +1,5 @@
 import { LanguageConfig, ILimiters, ILanguagesMapConfig } from './types';
-import { defaultLineSym, defaultSubSym, defaultBlockSym } from './config';
+import { default_solidLineSym as default_solidLineSym, default_wordLineSym, default_blockSym } from './config';
 
 const wrapLimiters = (left: string, right: string): ILimiters => ({ left, right });
 
@@ -94,21 +94,13 @@ const getLanguageDefaultLimiters = (lang?: string): ILimiters => {
   }
 };
 
-const getLanguageDefaultFiller = (lang?: string): [string, string, string] => {
-  switch (lang) {
-    // TODO: add more language cases
-    default:
-      return ["-", "-", "="];
-  }
-}
-
 // waiting for issue: https://github.com/microsoft/vscode/issues/2871
 export function getLanguageConfig(
   language: string,
   getUserLanguagesMap: () => ILanguagesMapConfig
 ): LanguageConfig {
-  let lineSym: string;
-  let subSym: string;
+  let solidLineSym: string;
+  let wordLineSym: string;
   let blockSym: string;
   let limiters: ILimiters;
 
@@ -116,16 +108,16 @@ export function getLanguageConfig(
 
   if (userLanguagesMap !== undefined && userLanguagesMap[language] !== undefined) {
     const currentLangObj = userLanguagesMap[language];
-    lineSym = currentLangObj.lineSym || defaultLineSym;
-    subSym = currentLangObj.subSym || defaultSubSym;
-    blockSym = currentLangObj.blockSym || defaultBlockSym;
+    solidLineSym = currentLangObj.solidLineSym || default_solidLineSym;
+    wordLineSym = currentLangObj.wordLineSym || default_solidLineSym;
+    blockSym = currentLangObj.blockSym || default_blockSym;
     limiters = wrapLimiters(currentLangObj.limiters[0], currentLangObj.limiters[1] || '');
   } else {
-    lineSym = defaultLineSym;
-    subSym = defaultSubSym;
-    blockSym = defaultBlockSym;
+    solidLineSym = default_solidLineSym;
+    wordLineSym = default_wordLineSym;
+    blockSym = default_blockSym;
     limiters = getLanguageDefaultLimiters(language);
   }
 
-  return { lineSym, subSym, blockSym, limiters };
+  return { solidLineSym: solidLineSym, wordLineSym: wordLineSym, blockSym, limiters };
 }

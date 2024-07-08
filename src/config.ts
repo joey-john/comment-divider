@@ -5,7 +5,6 @@ import { getLanguageConfig } from './limiters';
 import {
   LanguageConfig,
   IPreset,
-  ILimiters,
   IConfig,
   PresetId,
   Height,
@@ -15,9 +14,9 @@ import {
 } from './types';
 
 // Default Line Filler Symbols 
-export const defaultLineSym = workspace.getConfiguration(EXT_ID).get<string>('lineFiller');
-export const defaultSubSym = workspace.getConfiguration(EXT_ID).get<string>('subheaderFiller');
-export const defaultBlockSym = workspace.getConfiguration(EXT_ID).get<string>('mainHeaderFiller');
+export const default_solidLineSym = workspace.getConfiguration(EXT_ID).get<string>('lineFiller');
+export const default_wordLineSym = workspace.getConfiguration(EXT_ID).get<string>('subheaderFiller');
+export const default_blockSym = workspace.getConfiguration(EXT_ID).get<string>('mainHeaderFiller');
 
 const getPreset = (type: PresetId): IPreset => {
   const section = workspace.getConfiguration(EXT_ID);
