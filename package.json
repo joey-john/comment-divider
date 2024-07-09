@@ -1,9 +1,9 @@
 {
-  "name": "comment-divider",
-  "version": "0.4.0",
-  "publisher": "Joey John",
+  "name": "comment-divider-j",
+  "version": "0.5.0",
+  "publisher": "joeycjohn",
   "engines": {
-    "vscode": "^1.28.0"
+    "vscode": "^1.91.0"
   },
   "license": "GPL-3.0",
   "displayName": "Comment Divider",
@@ -209,14 +209,11 @@
     "postinstall": "node ./node_modules/vscode/bin/install"
   },
   "devDependencies": {
+    "@types/vscode": "^1.91.0",
     "prettier": "^2.2.1",
     "tslint": "^5.11.0",
     "tslint-config-prettier": "^1.17.0",
     "typescript": "^4.1.2",
     "typescript-tslint-plugin": "^0.3.1"
-  },
-  "dependencies": {
-    "@types/vscode": "^1.91.0",
-    "vscode": "^1.1.37"
   }
 }
