@@ -1,12 +1,12 @@
 {
-  "name": "comment-divider-j",
+  "name": "comment-divider",
   "version": "0.5.0",
   "publisher": "joeycjohn",
   "engines": {
     "vscode": "^1.91.0"
   },
   "license": "GPL-3.0",
-  "displayName": "Comment Divider",
+  "displayName": "Comment Divider ",
   "description": "Divide your code by sections with styled separators. Forked from Comment-Divider by stackbreak",
   "categories": [
     "Other",
