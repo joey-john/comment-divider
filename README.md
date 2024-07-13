@@ -1,5 +1,5 @@
 <p align="center">
-    <img alt="Comment Divider" src="https://github.com/joey-john/comment-divider/raw/master/img/logo_256.png" width="20%"/>
+  <img alt="Comment Divider" src="https://github.com/stackbreak/comment-divider/raw/master/img/logo_256.png" width="20%"/>
 </p>
 
 <h1 align="center">
@@ -14,9 +14,7 @@ This is **[Visual Studio Code](https://github.com/Microsoft/vscode)** extension,
 
 ## Install
 
-<!-- TODO: UPDATE ON PUBLISH -->
-https://marketplace.visualstudio.com/items?itemName=stackbreak.comment-divider 
-
+https://marketplace.visualstudio.com/items?itemName=stackbreak.comment-divider
 ## Demo
 
 ![Subheader Demo](img/sub-header.gif)
@@ -232,7 +230,4 @@ The example above overrides `python` and `c` defaults. As a result, the headers 
 
 ## Issues
 
-Request features and report bugs using [GitHub](https://github.com/joey-john/comment-divider/issues).
-
-### Known Issues
--
+Request features and report bugs using [GitHub](https://github.com/stackbreak/comment-divider/issues).

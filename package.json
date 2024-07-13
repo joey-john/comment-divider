@@ -1,13 +1,12 @@
 {
   "name": "comment-divider",
   "version": "0.5.0",
-  "publisher": "joeycjohn",
+  "publisher": "stackbreak",
   "engines": {
     "vscode": "^1.91.0"
   },
   "license": "GPL-3.0",
   "displayName": "Comment Divider ",
-  "description": "Divide your code by sections with styled separators. Forked from Comment-Divider by stackbreak",
   "categories": [
     "Other",
     "Snippets"
@@ -21,12 +20,12 @@
   "icon": "img/logo_256.png",
   "repository": {
     "type": "git",
-    "url": "https://github.com/joey-john/comment-divider"
+    "url": "https://github.com/stackbreak/comment-divider"
   },
   "bugs": {
-    "url": "https://github.com/joey-john/comment-divider/issues"
+    "url": "https://github.com/stackbreak/comment-divider/issues"
   },
-  "homepage": "https://github.com/joey-john/comment-divider/blob/master/README.md",
+  "homepage": "https://github.com/stackbreak/comment-divider/edit/master/README.md",
   "contributes": {
     "commands": [
       {

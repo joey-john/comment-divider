@@ -6,7 +6,6 @@ import { IConfig, PresetId, Height, Align, Transform, ILanguagesMapConfig, ILimi
 
 // Default Line Filler Symbols 
 export const defaultLimiters: ILimiters = (([left, right]) => ({ left, right }))(workspace.getConfiguration(EXT_ID).get('limiters'));
-console.log("Default Limiters", defaultLimiters); // DELETE:
 
 const getDefaultConfig = (type: PresetId, lang: string): IConfig => {
   const section = workspace.getConfiguration(EXT_ID);
@@ -68,7 +67,6 @@ export function getLanguageConfig(
     limiters: limiters
   };
 
-  console.log("New Config", config); // DELETE:
   return config;
 }
 
@@ -78,7 +76,6 @@ export function getLanguageConfig(
  */
 export const getConfig = (presetId: PresetId, lang: string): IConfig => {
   const defaultConfig = getDefaultConfig(presetId, lang);
-  console.log("Default Config:", defaultConfig); // DELETE:
   return getLanguageConfig(lang, presetId, defaultConfig, getLanguagesMapConfig);
 }
 

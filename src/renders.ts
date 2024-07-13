@@ -9,7 +9,6 @@ const extractIndent = (rawText: string): string => rawText.split(/\S+/)[0];
 // Build Header
 const renderHeader = (croppedText: string, config: IConfig, indent: string): string => {
   checkCommentChars(croppedText, config.limiters);
-  console.log(config);
   checkLongText(croppedText, config.lineLen, config.limiters);
   checkFillerLen(config.filler);
 
