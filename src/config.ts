@@ -6,11 +6,11 @@ import { IConfig, PresetId, Height, Align, Transform, ILanguagesMapConfig, ILimi
 
 // Default Line Filler Symbols 
 export const defaultLimiters: ILimiters = (([left, right]) => ({ left, right }))(workspace.getConfiguration(EXT_ID).get('limiters'));
-console.log("Default Limiters", defaultLimiters);
+console.log("Default Limiters", defaultLimiters); // DELETE:
 
 const getDefaultConfig = (type: PresetId, lang: string): IConfig => {
   const section = workspace.getConfiguration(EXT_ID);
-  console.log("section", section);
+
   const lineLen: number = section.get('lineLen');
   const includeIndent: boolean = section.get('shouldLengthIncludeIndent');
   const height: Height = section.get(`${type}.height`);
@@ -18,7 +18,7 @@ const getDefaultConfig = (type: PresetId, lang: string): IConfig => {
   const transform: Transform = section.get(`${type}.transform`);
   const filler: string = section.get(`${type}.filler`);
 
-  // const limiters: ILimiters = getLanguageDefaultLimiters(lang);
+  const limiters: ILimiters = getLanguageDefaultLimiters(lang);
 
   return {
     lineLen,
@@ -27,7 +27,7 @@ const getDefaultConfig = (type: PresetId, lang: string): IConfig => {
     align,
     transform,
     filler,
-    limiters: getLanguageDefaultLimiters(lang)
+    limiters
   };
 };
 
@@ -69,7 +69,7 @@ export function getLanguageConfig(
     limiters: mergedLimiters
   };
 
-  console.log("New Config", config);
+  console.log("New Config", config); // DELETE:
   return config;
 }
 
@@ -79,7 +79,7 @@ export function getLanguageConfig(
  */
 export const getConfig = (presetId: PresetId, lang: string): IConfig => {
   const defaultConfig = getDefaultConfig(presetId, lang);
-  console.log("Default Config:", defaultConfig);
+  console.log("Default Config:", defaultConfig); // DELETE:
   return getLanguageConfig(lang, presetId, defaultConfig, getLanguagesMapConfig);
 }
 
