@@ -288,36 +288,6 @@
                       "maxLength": 1,
                       "default": "-",
                       "description": "Set language specific symbol for solid line filling (only one)."
-                    },
-                    "height": {
-                      "type": "string",
-                      "enum": [
-                        "block",
-                        "line"
-                      ],
-                      "default": "block",
-                      "description": "Set language specific solid line vertical style."
-                    },
-                    "align": {
-                      "type": "string",
-                      "enum": [
-                        "center",
-                        "left",
-                        "right"
-                      ],
-                      "default": "center",
-                      "description": "Set language specific solid line text align."
-                    },
-                    "transform": {
-                      "type": "string",
-                      "enum": [
-                        "uppercase",
-                        "lowercase",
-                        "titlecase",
-                        "none"
-                      ],
-                      "default": "none",
-                      "description": "Set language specific solid line text transform style."
                     }
                   },
                   "additionalProperties": false
