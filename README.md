@@ -10,8 +10,6 @@ This is **[Visual Studio Code](https://github.com/Microsoft/vscode)** extension,
 
 **[Supports all common languages](#language-support).**
 
-**NOTE:** This extension is a fork of [Comment Divider by stackbreak](https://github.com/stackbreak/comment-divider). The intention of this fork is to add enhancements to the original extension.
-
 ## Install
 
 https://marketplace.visualstudio.com/items?itemName=stackbreak.comment-divider
