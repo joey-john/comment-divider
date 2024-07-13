@@ -1,9 +1,9 @@
 <p align="center">
-  <img alt="Comment Divider" src="https://github.com/joey-john/comment-divider/raw/master/img/logo_256.png" width="20%"  />
+    <img alt="Comment Divider" src="https://github.com/joey-john/comment-divider/raw/master/img/logo_256.png" width="20%"/>
 </p>
 
 <h1 align="center">
-  Comment Divider
+    Comment Divider
 </h1>
 
 This is **[Visual Studio Code](https://github.com/Microsoft/vscode)** extension, which provides commands for generating comment-wrapped separators from line content.
@@ -25,12 +25,10 @@ https://marketplace.visualstudio.com/items?itemName=stackbreak.comment-divider
 
 ### Make main header
 
-- Default Shortcut:
+* Default Shortcut
+: **`Ctrl`** + **`Shift`** + **`Alt`** + **`X`**
 
-  **`Shift`** + **`Alt`** + **`X`**
-
-- Default Style:
-
+* Default Style :
   ```
   /* -------------------------------------------------------------------------- */
   /*                                Example text                                */
@@ -39,24 +37,20 @@ https://marketplace.visualstudio.com/items?itemName=stackbreak.comment-divider
 
 ### Make subheader
 
-- Default Shortcut:
+* Default Shortcut
+: **`Alt`** + **`X`**
 
-  **`Alt`** + **`X`**
-
-- Default Style:
-
+* Default Style :
   ```
   /* ------------------------------ Example text ------------------------------ */
   ```
 
 ### Insert solid line
 
-- Default Shortcut:
+* Default Shortcut
+:  **`Alt`** + **`Shift`** + **`X`**
 
-  **`Alt`** + **`Y`**
-
-* Default Style:
-
+* Default Style :
   ```
   /* -------------------------------------------------------------------------- */
   ```
@@ -84,8 +78,13 @@ or in html files
 ### Common
 
 ```json
+  // Default Limiters Characters used when language is not predefined or found in comment-divider.languagesMap
+  "comment-divider.limiters": ["/*". "*/"],
+```
+
+```json
   // Set line length for all dividers.
-  "comment-divider.length": 80,
+  "comment-divider.lineLen": 80,
 ```
 
 ```json
@@ -117,85 +116,114 @@ or in html files
 ### Main Header
 
 ```json
-  // "Set symbol for main header line filling (only one).
-  "comment-divider.mainHeaderFiller": "-",
+  // Set default symbol for main header line filling (only one).
+  "comment-divider.mainHeader.filler": "-",
 
   // Set main header vertical style.
-  "comment-divider.mainHeaderHeight": "block",
+  "comment-divider.mainHeader.height": "block",
 
   // Set main header text align.
-  "comment-divider.mainHeaderAlign": "center",
+  "comment-divider.mainHeader.align": "center",
 
   // Set main header text transform style.
-  "comment-divider.mainHeaderTransform": "none",
+  "comment-divider.mainHeader.transform": "none",
 ```
 
 ### Subheader
 
 ```json
-  // "Set symbol for subheader line filling (only one).
-  "comment-divider.subheaderFiller": "-",
+  // Set symbol for subheader line filling (only one).
+  "comment-divider.subheader.filler": "-",
 
   // Set subheader vertical style.
-  "comment-divider.subheaderHeight": "line",
+  "comment-divider.subheader.height": "line",
 
   // Set subheader text align.
-  "comment-divider.subheaderAlign": "center",
+  "comment-divider.subheader.align": "center",
 
   // Set subheader text transform style.
-  "comment-divider.subheaderTransform": "none",
+  "comment-divider.subheader.transform": "none",
 ```
 
 ### Solid Line
 
 ```json
   // Set symbol for solid line filling.
-  "comment-divider.lineFiller": "-",
+  "comment-divider.line.filler": "-",
 ```
 
 ## Languages Configuration
 
-If some language is not supported out of the box, or you want to change the default characters for an already supported language, it is possible to do it in the settings.
+If some language is not supported out of the box, or you want to change the default settings for an already supported language, it is possible to do it in the settings.
 
 ```json
 "comment-divider.languagesMap": {
-      "python": {
-        "solidLineSym": "-",
-        "wordLineSym": "-",
-        "blockSym": "+",
-        "limiters": ["#", "#"],
-      },
-      "c": {
-        "limiters": ["//"]
-      }
+  "python": {
+    "limiters": ["#", "#"],
+    "mainHeader": {
+      "align": "left",
+      "filler": "+",
+      "height": "block",
+      "transform": "uppercase"
+    },
+    "subheader": {
+      "align": "right",
+      "filler": "*",
+      "transform": "titlecase"    
+    },
+    "line": {
+      "filler": "~",
+    }
+  },
+  "c": {
+    "limiters": ["//"]
+  }
 }
 ```
 
-The item name is the language mode name and is associated with an object with the following fields:
-  - `solidLineSym`: (optional) Solid Line Filler Character
-  - `wordLineSym`: (optional) Word Line Filler Character
-  - `blockSym`: (optional) Block Header Filler Character
-  - `limiters`: (required) Comment Symbols. The first element is the start of the line. The second, 
-                if defined, is the end. 
+The item name is the language mode name and is associated with an object with the following fields
 
-For any symbol not defined, the corresponding default filler symbol defined in the settings will be used. 
+  * `limiters`
+  : _(required)_ Comment Symbols. The first element is used at the start of the line and the second, if defined, is placed at the end.
 
-The example above overrides `python` and `c` defaults. As a result, the subheaders for these languages look like this:
+  * `mainHeader` | `subheader`
+  : _(optional)_ Language settings for the specified header. Has the following optional properties:
+    
+    * `align`
+    : language specific header text alignement
+
+    * `filler` 
+    : language specific header line filler character
+
+    * `height`
+    : language specific header vertical style
+
+    * `transform`
+    : language specific header text transform style
+
+  * `line`
+  : _(optional)_ Language settings for the solid line. Has the following optional properties:
+    * `filler`
+    : solid line filler character
+
+_Note:_ For any symbol not defined, the corresponding default filler symbol defined in the settings will be used.
+
+The example above overrides `python` and `c` defaults. As a result, the headers for these languages look like this:
 
 ```python
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ #
-#                                 Python Header                                #
+# PYTHON HEADER                                                                #
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ #
 
-# ----------------------------- Python Subheader ----------------------------- #
+# *********************************************************** Python Subheader #
 
-# ---------------------------------------------------------------------------- #
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 ```
 
 ```c
-// -----------------------------------------------------------------------------
+// =============================================================================
 //                                  C Header                                    
-// -----------------------------------------------------------------------------
+// =============================================================================
 
 // ------------------------------- C Subheader ---------------------------------
 
@@ -207,4 +235,4 @@ The example above overrides `python` and `c` defaults. As a result, the subheade
 Request features and report bugs using [GitHub](https://github.com/joey-john/comment-divider/issues).
 
 ### Known Issues
-- After changing a symbol, `Developer: Reload Window` must be called in order to have the change take effect
+-

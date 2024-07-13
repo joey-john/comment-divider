@@ -87,7 +87,7 @@
           "type": "string",
           "minLength": 1,
           "maxLength": 1,
-          "default": "=",
+          "default": "-",
           "description": "Set default symbol for main header line filling (only one)."
         },
         "comment-divider.mainHeader.height": {
