@@ -90,6 +90,6 @@ export const getLanguageDefaultLimiters = (lang?: string): ILimiters => {
       return wrapLimiters('#', '#');
 
     default:
-      return defaultLimiters
+      return defaultLimiters;
   }
 };

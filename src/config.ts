@@ -56,17 +56,16 @@ export function getLanguageConfig(
   /// Partial Config from Language Map
   const userLanguageConfig: Partial<IConfig> = userLanguagesMap[language]?.[presetId] || {};
 
-  // Merge limiters separately to handle nested objects
-  const mergedLimiters = {
-    ...defaults.limiters,
-    ...wrapLimiters(userLanguagesMap[language]?.limiters[0], userLanguagesMap[language]?.limiters[1] || '')
-  };
+  // Handle Limiters
+  let userLimiters = userLanguagesMap[language]?.limiters;
+  const limiters: ILimiters = userLimiters !== undefined ?
+    wrapLimiters(userLimiters[0], userLimiters[1] || '') : defaults.limiters;
 
   // Return Config Value (userLanguageConfig overwrites any defined values in defaults)
   const config: IConfig = {
     ...defaults,
     ...userLanguageConfig,
-    limiters: mergedLimiters
+    limiters: limiters
   };
 
   console.log("New Config", config); // DELETE:
