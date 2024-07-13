@@ -45,5 +45,6 @@ export const checkFillerLen = (fillerSym: string) => {
 
 export const handleError = (e: Error) => {
   const errorMsg = ERRORS[e.message];
+  console.log(e);
   if (errorMsg !== undefined) showErrorMsg(errorMsg);
 };

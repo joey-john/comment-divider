@@ -6,10 +6,12 @@ import { PresetId, IConfig } from './types';
 
 const extractIndent = (rawText: string): string => rawText.split(/\S+/)[0];
 
+// Build Header
 const renderHeader = (croppedText: string, config: IConfig, indent: string): string => {
   checkCommentChars(croppedText, config.limiters);
+  console.log(config);
   checkLongText(croppedText, config.lineLen, config.limiters);
-  checkFillerLen(config.blockSym);
+  checkFillerLen(config.filler);
 
   const transformedWords = TRANSFORM_MAP[config.transform](croppedText);
   const buildFn = BUILDERS_MAP[config.height];
@@ -19,10 +21,10 @@ const renderHeader = (croppedText: string, config: IConfig, indent: string): str
 // Build Solid Line
 const renderLine = (config: IConfig, indent: string): string => {
   checkLongText('', config.lineLen, config.limiters);
-  checkFillerLen(config.solidLineSym);
+  checkFillerLen(config.filler);
 
   const buildFn = buildSolidLine;
-  return buildFn(config, config.solidLineSym, indent);
+  return buildFn(config, indent);
 };
 
 export const render = (type: PresetId, rawText: string, lang: string): string => {

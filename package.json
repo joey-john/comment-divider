@@ -63,33 +63,43 @@
       "type": "object",
       "title": "Comment Divider",
       "properties": {
-        "comment-divider.length": {
+        "comment-divider.limiters": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 2,
+          "default": [
+            "/*",
+            "*/"
+          ],
+          "description": "Default Limiter Characters to use when language is not predefined or found in comment-divider.languagesMap"
+        },
+        "comment-divider.lineLen": {
           "type": "number",
           "default": 80,
-          "description": "Set line length for all dividers."
+          "description": "Set default line length for all dividers."
         },
         "comment-divider.shouldLengthIncludeIndent": {
           "type": "boolean",
           "default": false,
-          "description": "Set whether the divider will be shrink consider indent size, or will be always fixed length."
+          "description": "Set the default for whether the divider will be shrink consider indent size, or will be always fixed length."
         },
-        "comment-divider.mainHeaderFiller": {
+        "comment-divider.mainHeader.filler": {
           "type": "string",
           "minLength": 1,
           "maxLength": 1,
-          "default": "-",
-          "description": "Set symbol for main header line filling (only one)."
+          "default": "=",
+          "description": "Set default symbol for main header line filling (only one)."
         },
-        "comment-divider.mainHeaderHeight": {
+        "comment-divider.mainHeader.height": {
           "type": "string",
           "enum": [
             "block",
             "line"
           ],
           "default": "block",
-          "description": "Set main header vertical style."
+          "description": "Set default main header vertical style."
         },
-        "comment-divider.mainHeaderAlign": {
+        "comment-divider.mainHeader.align": {
           "type": "string",
           "enum": [
             "center",
@@ -97,9 +107,9 @@
             "right"
           ],
           "default": "center",
-          "description": "Set main header text align."
+          "description": "Set default main header text align."
         },
-        "comment-divider.mainHeaderTransform": {
+        "comment-divider.mainHeader.transform": {
           "type": "string",
           "enum": [
             "uppercase",
@@ -108,25 +118,25 @@
             "none"
           ],
           "default": "none",
-          "description": "Set main header text transform style."
+          "description": "Set default main header text transform style."
         },
-        "comment-divider.subheaderFiller": {
+        "comment-divider.subheader.filler": {
           "type": "string",
           "minLength": 1,
           "maxLength": 1,
           "default": "-",
-          "description": "Set symbol for subheader line filling (only one)."
+          "description": "Set default symbol for subheader line filling (only one)."
         },
-        "comment-divider.subheaderHeight": {
+        "comment-divider.subheader.height": {
           "type": "string",
           "enum": [
             "block",
             "line"
           ],
           "default": "line",
-          "description": "Set subheader vertical style."
+          "description": "Set default subheader vertical style."
         },
-        "comment-divider.subheaderAlign": {
+        "comment-divider.subheader.align": {
           "type": "string",
           "enum": [
             "center",
@@ -134,9 +144,9 @@
             "right"
           ],
           "default": "center",
-          "description": "Set subheader text align."
+          "description": "Set default subheader text align."
         },
-        "comment-divider.subheaderTransform": {
+        "comment-divider.subheader.transform": {
           "type": "string",
           "enum": [
             "uppercase",
@@ -145,18 +155,18 @@
             "none"
           ],
           "default": "none",
-          "description": "Set subheader text transform style."
+          "description": "Set default subheader text transform style."
         },
-        "comment-divider.lineFiller": {
+        "comment-divider.line.filler": {
           "type": "string",
           "minLength": 1,
           "maxLength": 1,
           "default": "-",
-          "description": "Set symbol for solid line filling."
+          "description": "Set default symbol for solid line filling."
         },
         "comment-divider.languagesMap": {
           "type": "object",
-          "description": "Defines what characters will be used as comment line limiters for special languages. It also overrides the default preset.",
+          "description": "Language Specific Settings. Overrides any default setting preset.",
           "uniqueItems": true,
           "patternProperties": {
             "^[\\w\\-\\.]+$": {
@@ -168,29 +178,149 @@
                 "limiters"
               ],
               "properties": {
-                "solidLineSym": {
-                  "type": "string",
-                  "description": "Set filler symbol for solid line.",
-                  "minLength": 1,
-                  "maxLength": 1
-                },
-                "wordLineSym": {
-                  "type": "string",
-                  "description": "Set filler symbol for word line.",
-                  "minLength": 1,
-                  "maxLength": 1
-                },
-                "blockSym": {
-                  "type": "string",
-                  "description": "Set filler symbol for block lines",
-                  "minLength": 1,
-                  "maxLength": 1
-                },
                 "limiters": {
                   "type": "array",
-                  "description": "Line Limiters",
+                  "description": "Language Specific Comment Line Limiters",
                   "minItems": 1,
                   "maxItems": 2
+                },
+                "mainHeader": {
+                  "type": "object",
+                  "description": "Main Header Language Configuration Settings",
+                  "uniqueItems": true,
+                  "propertyName": true,
+                  "properties": {
+                    "filler": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 1,
+                      "default": "-",
+                      "description": "Set language specific symbol for main header line filling (only one)."
+                    },
+                    "height": {
+                      "type": "string",
+                      "enum": [
+                        "block",
+                        "line"
+                      ],
+                      "default": "block",
+                      "description": "Set language specific main header vertical style."
+                    },
+                    "align": {
+                      "type": "string",
+                      "enum": [
+                        "center",
+                        "left",
+                        "right"
+                      ],
+                      "default": "center",
+                      "description": "Set language specific main header text align."
+                    },
+                    "transform": {
+                      "type": "string",
+                      "enum": [
+                        "uppercase",
+                        "lowercase",
+                        "titlecase",
+                        "none"
+                      ],
+                      "default": "none",
+                      "description": "Set language specific main header text transform style."
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "subheader": {
+                  "type": "object",
+                  "description": "Subheader Language Configuration Settings",
+                  "uniqueItems": true,
+                  "propertyName": true,
+                  "properties": {
+                    "filler": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 1,
+                      "default": "-",
+                      "description": "Set language specific symbol for subheader line filling (only one)."
+                    },
+                    "height": {
+                      "type": "string",
+                      "enum": [
+                        "block",
+                        "line"
+                      ],
+                      "default": "block",
+                      "description": "Set language specific subheader vertical style."
+                    },
+                    "align": {
+                      "type": "string",
+                      "enum": [
+                        "center",
+                        "left",
+                        "right"
+                      ],
+                      "default": "center",
+                      "description": "Set language specific subheader text align."
+                    },
+                    "transform": {
+                      "type": "string",
+                      "enum": [
+                        "uppercase",
+                        "lowercase",
+                        "titlecase",
+                        "none"
+                      ],
+                      "default": "none",
+                      "description": "Set language specific subheader text transform style."
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "line": {
+                  "type": "object",
+                  "description": "Solid Line Language Configuration Settings",
+                  "uniqueItems": true,
+                  "propertyName": true,
+                  "properties": {
+                    "filler": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 1,
+                      "default": "-",
+                      "description": "Set language specific symbol for solid line filling (only one)."
+                    },
+                    "height": {
+                      "type": "string",
+                      "enum": [
+                        "block",
+                        "line"
+                      ],
+                      "default": "block",
+                      "description": "Set language specific solid line vertical style."
+                    },
+                    "align": {
+                      "type": "string",
+                      "enum": [
+                        "center",
+                        "left",
+                        "right"
+                      ],
+                      "default": "center",
+                      "description": "Set language specific solid line text align."
+                    },
+                    "transform": {
+                      "type": "string",
+                      "enum": [
+                        "uppercase",
+                        "lowercase",
+                        "titlecase",
+                        "none"
+                      ],
+                      "default": "none",
+                      "description": "Set language specific solid line text transform style."
+                    }
+                  },
+                  "additionalProperties": false
                 }
               },
               "additionalProperties": false

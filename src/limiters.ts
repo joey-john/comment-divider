@@ -1,9 +1,9 @@
-import { LanguageConfig, ILimiters, ILanguagesMapConfig } from './types';
-import { default_solidLineSym as default_solidLineSym, default_wordLineSym, default_blockSym } from './config';
+import { ILimiters } from './types';
+import { defaultLimiters } from './config';
 
-const wrapLimiters = (left: string, right: string): ILimiters => ({ left, right });
+export const wrapLimiters = (left: string, right: string): ILimiters => ({ left, right });
 
-const getLanguageDefaultLimiters = (lang?: string): ILimiters => {
+export const getLanguageDefaultLimiters = (lang?: string): ILimiters => {
   switch (lang) {
     case 'c':
     case 'cpp':
@@ -90,34 +90,6 @@ const getLanguageDefaultLimiters = (lang?: string): ILimiters => {
       return wrapLimiters('#', '#');
 
     default:
-      return wrapLimiters('/*', '*/');
+      return defaultLimiters
   }
 };
-
-// waiting for issue: https://github.com/microsoft/vscode/issues/2871
-export function getLanguageConfig(
-  language: string,
-  getUserLanguagesMap: () => ILanguagesMapConfig
-): LanguageConfig {
-  let solidLineSym: string;
-  let wordLineSym: string;
-  let blockSym: string;
-  let limiters: ILimiters;
-
-  const userLanguagesMap = getUserLanguagesMap();
-
-  if (userLanguagesMap !== undefined && userLanguagesMap[language] !== undefined) {
-    const currentLangObj = userLanguagesMap[language];
-    solidLineSym = currentLangObj.solidLineSym || default_solidLineSym;
-    wordLineSym = currentLangObj.wordLineSym || default_solidLineSym;
-    blockSym = currentLangObj.blockSym || default_blockSym;
-    limiters = wrapLimiters(currentLangObj.limiters[0], currentLangObj.limiters[1] || '');
-  } else {
-    solidLineSym = default_solidLineSym;
-    wordLineSym = default_wordLineSym;
-    blockSym = default_blockSym;
-    limiters = getLanguageDefaultLimiters(language);
-  }
-
-  return { solidLineSym: solidLineSym, wordLineSym: wordLineSym, blockSym, limiters };
-}

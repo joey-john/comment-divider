@@ -15,22 +15,16 @@ export interface ILimiters {
   right: string;
 }
 
-export interface LanguageConfig {
-  solidLineSym: string;
-  wordLineSym: string;
-  blockSym: string;
-  limiters: ILimiters;
-}
-
-export interface IPreset {
+export interface IConfig {
   lineLen: number;
+  includeIndent: boolean;
   height: Height;
   align: Align;
   transform: Transform;
-  includeIndent: boolean;
+  filler: string;
+  limiters: ILimiters;
 }
 
-export interface IConfig extends IPreset, LanguageConfig { }
 
 export interface IWordsAnchors {
   leftAnchor: number;
@@ -38,5 +32,5 @@ export interface IWordsAnchors {
 }
 
 export interface ILanguagesMapConfig {
-  [languages: string]: LanguageConfig
+  [languages: string]: IConfig
 }
