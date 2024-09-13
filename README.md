@@ -3,14 +3,22 @@
 </p>
 
 <h1 align="center">
-    Comment Divider
+  Comment Divider
 </h1>
+
+
+## Note
+This is a custom version of Stackbreak's Comment Divider written by Joey John.
+
+It features many improvements to the original. I've been to lazy to publish it or push it from the fork.
+
+This extension is a fork of [Comment Divider by stackbreak](https://github.com/stackbreak/comment-divider). The intention of this fork is to add enhancements to the original extension.
+
+----------
 
 This is **[Visual Studio Code](https://github.com/Microsoft/vscode)** extension, which provides commands for generating comment-wrapped separators from line content.
 
 **[Supports all common languages](#language-support).**
-
-**NOTE:** This extension is a fork of [Comment Divider by stackbreak](https://github.com/stackbreak/comment-divider). The intention of this fork is to add enhancements to the original extension.
 
 ## Install
 

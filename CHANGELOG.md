@@ -2,6 +2,12 @@
 
 All notable changes to the "Comment Divider" extension will be documented in this file.
 
+## [0.5.0] - 2024-07-13
+
+### Enhancement
+
+- Modified several major code areas. Made all fields configurable per language. Joey John
+
 ## [0.4.0] - 2020-05-18
 
 ### Enhancement
